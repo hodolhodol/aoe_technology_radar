@@ -4,6 +4,7 @@
   "bin": {
     "techradar": "./bin/techradar.js"
   },
+  "homepage": "https://hodolhodol.github.io/aoe_technology_radar/",
   "scripts": {
     "dev": "next dev",
     "build:icons": "npx @svgr/cli --typescript --no-dimensions --no-prettier --out-dir src/components/Icons -- src/icons",
@@ -13,7 +14,8 @@
     "lint": "next lint",
     "fix": "prettier . --write",
     "prepare": "husky",
-    "postinstall": "npm run build:icons"
+    "postinstall": "npm run build:icons",
+    "deploy": "gh-pages -d out"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",
@@ -44,5 +46,8 @@
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
+  },
+  "dependencies": {
+    "gh-pages": "^6.1.1"
   }
 }

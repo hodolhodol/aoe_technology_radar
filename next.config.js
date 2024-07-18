@@ -5,6 +5,7 @@ const basePath =
 /** @type {import("next").NextConfig} */
 const nextConfig = {
   basePath,
+  assetPrefix: ".",
   output: "export",
   trailingSlash: true,
   reactStrictMode: true,

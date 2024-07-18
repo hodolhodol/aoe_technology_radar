@@ -53,7 +53,7 @@
       "title": "Adopt",
       "description": "",
       "color": "#588157",
-      "radius": 0.5,
+      "radius": 0.3,
       "strokeWidth": 5
     },
     {
@@ -61,7 +61,7 @@
       "title": "Trial",
       "description": "",
       "color": "#457b9d",
-      "radius": 0.69,
+      "radius": 0.5,
       "strokeWidth": 3
     },
     {
@@ -69,13 +69,29 @@
       "title": "Assess",
       "description": "",
       "color": "#bc6c25",
-      "radius": 0.85,
+      "radius": 0.65,
       "strokeWidth": 2
     },
     {
       "id": "hold",
       "title": "Hold",
       "description": "",
+      "color": "#d62828",
+      "radius": 0.8,
+      "strokeWidth": 0.75
+    },
+    {
+      "id": "level_5",
+      "title": "Level 5",
+      "description": "New Added Status",
+      "color": "#d62828",
+      "radius": 0.9,
+      "strokeWidth": 0.85
+    },
+    {
+      "id": "level_6",
+      "title": "Level 6",
+      "description": "New Added Status",
       "color": "#d62828",
       "radius": 1,
       "strokeWidth": 0.75
