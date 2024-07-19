@@ -7,11 +7,14 @@ interface ConfluenceContentsProps {
 
 
 const fetchConfluenceContent = async (pageId: string) => {
-  const url = `https://your-confluence-domain/rest/api/content/${pageId}?expand=body.view`;
+  const token = process.env.NEXT_PUBLIC_CONFLUENCE_API_TOKEN;
+  const baseUrl = process.env.NEXT_PUBLIC_CONFLUENCE_API_BASE_URL;
+  const url = `${baseUrl}/rest/api/content/${pageId}?expand=body.view`;
+
   try {
     const response = await axios.get(url, {
       headers: {
-        'Authorization': 'Basic ' + btoa('username:password'), // Basic Auth, 필요에 따라 변경
+        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
       }
     });
