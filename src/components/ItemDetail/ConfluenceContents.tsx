@@ -5,6 +5,24 @@ interface ConfluenceContentsProps {
   pageId: string;
 }
 
+
+const fetchConfluenceContent = async (pageId: string) => {
+  const url = `https://your-confluence-domain/rest/api/content/${pageId}?expand=body.view`;
+  try {
+    const response = await axios.get(url, {
+      headers: {
+        'Authorization': 'Basic ' + btoa('username:password'), // Basic Auth, 필요에 따라 변경
+        'Content-Type': 'application/json'
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching Confluence content:', error);
+    return null;
+  }
+};
+
+
 const ConfluenceContents: React.FC<ConfluenceContentsProps> = ({ pageId }) => {
   const [content, setContent] = useState<string>('');
 
