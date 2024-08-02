@@ -230,8 +230,23 @@ function postProcessItems(items: Item[]): {
   return { releases, tags: uniqueTags, items: processedItems };
 }
 
+async function parseQuadrantDirectory(dirPath: string): Promise<{ id: string; body: string }[]> {
+  const items: { id: string; body: string }[] = [];
+  const entries = fs.readdirSync(dirPath, { withFileTypes: true });
+
+  for (const entry of entries) {
+    const fullPath = path.join(dirPath, entry.name);
+    if (entry.isFile() && entry.name.endsWith(".md")) {
+      const { id, body } = readMarkdownFile(fullPath);
+      items.push({ id, body });
+    }
+  }
+
+  return items;
+}
+
 // Parse the data and write radar data to JSON file
-parseDirectory(dataPath("radar")).then((items) => {
+parseDirectory(dataPath("radar")).then(async (items) => {
   const data = postProcessItems(items);
 
   if (data.items.length === 0) {
@@ -240,7 +255,10 @@ parseDirectory(dataPath("radar")).then((items) => {
     process.exit(1);
   }
 
-  const json = JSON.stringify(data, null, 2);
+  const quadrants = await parseQuadrantDirectory(dataPath("quadrant"));
+  const jsonData = { ...data, quadrants };
+
+  const json = JSON.stringify(jsonData, null, 2);
   fs.writeFileSync(dataPath("data.json"), json);
 });
 
